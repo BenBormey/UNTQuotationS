@@ -9,10 +9,12 @@ namespace UNTQuotation.Models
 {
     public  interface IAction
     {
-        void create(DataGridView dg);
-        void Update(DataGridView dg);
-        void Price(DataGridView dg);    
-        void ExportExcel(DataGridView dg);
+        void Create(DataGridView dg);
+        void UpdateById(DataGridView dg);
+        void DeleteById(DataGridView dg);
+        void LoadingData(DataGridView dg);
+        void PrintReprot(DataGridView dg);    
+        void ExportToExcel(DataGridView dg);
 
 
     }

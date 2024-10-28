@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="Column7.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column6.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -135,22 +135,58 @@
   <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="Column6.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnClose.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADQSURBVEhLY2AY
+        BaSEwP+gIKP/ISEXgfgfEP8nEf/7Hxp6AWQGTjvBCkg3GNUhQDNwWxAS8pdiC4Bm4LOA1GDBqp54C7Ky
+        nv5fuvQITl+B5EBq0IKVeAtABoDApUsHMCwBiYHAokVHybcA5LJz5/aDDbp8GWEJNjEkXxDvA5gmmGtB
+        loAwLl9B1ZNuAbJP0H2DJVmTZ8HZsxCX08QCmgYRTSOZ5skUlImwpHN4ugfJZWY+oywfkFH4DWBhR/Pi
+        GlThQCwhv8IJDjYkpZIbVcsAAPPcf+7aQkgWAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btuDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGTSURBVEhLrVU9
+        L0VBFHwRiYp4URESlY+gIZSEqAilr9ZHSygUhFehUFD4ExSSFzURHQ0S/gJakaDwMZPMJot9596310km
+        d3fPzJm7597N5nLJUQfKCfAOfAkcc425zLGv4nzuCG5tL3N1FDgFLgKFuMZc6ugC895rg2tHuc871OgM
+        uR5h8dFrg2tHuc8n1DgMGZxhkcgaJeswcQ0MZwRrBF+0+A/9d9+Ltf4E/+lj4DnDDqhljZLnYxvJV8+6
+        CuNmb06hL2aOHBdvGGxZH3FdbaoUaVk7chpu3d8+35gcBjVs0ZplsCRSrUgFzZ3m9x/CguQw8uIuWgZz
+        IjVGGDRJO2sZTIrUFmHQLu2EZTAqUm+EQZ+0I5bBgEiDEQZD0vZbBj0ijUUYjEvbbRm0ijQdYTAjbYtl
+        0CDSfITBgrT1lkGNSO7wFDR3GuscrIhbbRlUIPkJbIjEVt14ggOMCRe3GExpsikta5jxguxuEimQp4ba
+        xOBd+wDwjVZTglzehueJ1UHoAK6ADyDtfUzuJcDT/CO+AbeMvlbTCXrsAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnUpdate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFoSURBVEhL7ZXN
+        K0ZBFMZHWVD0ZqukUN5iJR8LC4oV7075E6RYsGfN/8PCVslXNrISC4ql2KBY8Ht0puad4s5ct2xM/bpf
+        Z55nzplz73Wu2jGK3BXcwlS10s6NIfgIp7APz1WaePEPRBeg3UxufBYtnPRAXyKtQfpe/Jh7e/BiJsrk
+        UnHDcA1yT2XDDELxGvfazEQ6Kpf2xB3COczDbAIzxHTACDzAGXSZoUyUyROM+yzfOFn1F4nHZHHpKZ3l
+        RGGFZYnnGmSL5xiUEk81+E78yDZ0gmMnbELYwl+VL9oDvSP3cALqEg3fLWpFtaqGPg3SGoz3s8hgwCaq
+        jb14uHKvN21x9VyDRZuoMjVAfR6u/NcGW2bg33KVy5clXGzpDCZR2QZl0h+nH1yXNvhBs+nRv0Fhpf6u
+        RK+sbb1wfcUBc9bOvXHoLjfuYA2WSrLCvAvQL1KflqbRzdUO6F+a+suM496ZewBDsfgnmHeRdNJZVbsA
+        AAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btnSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHFSURBVEhLY/CI
+        qXDwjKq8A8T/Ybihd9n/248+YeCSpjn/nQJz4Tgut/3/+WvPwHjO8t3/XEIKLzpHVokzIAOgobeRDQex
+        ybFg9rJdYIudg/O+eYbnKsPtQDecUgswLKGFBSBLXILyv7oFlogx0MoCsCXBhWdpaoFzYP5vmloA8gVW
+        C+p6lmBNpjcevP9//Nx9OD596RE8mc5YvB0lCcOSM1YLAhPr/3dMXfu/d+YmDLxq87H/6HjpukP/AxOq
+        ibcAW8TDxJAzGjFsrD6gqQUB0zf8Dz15GycOvPr4Py7st/4QRjBh+CDswqP/UR//48SBt579x4mvPxkE
+        Fqy5/eb/sSdfcOLDF178x4V3XXpJ2Ae7Lz75f/PhJ5z48Nln/3Hhg+efEbZg1+Eb5Ftw+hFpFixYve//
+        lPmbUXDXlBX/kXHf9NVwHx0k1YITwBS19/hNFLxw9cH/yHjt9nPkW3Dx5uv/Z648Q8Ebd1/6j4x3HLxF
+        vgVzV+wmGEQ9RATRP+SiATmSLwOTLCEf7Dpyh4APoquu4bIAW3LFm0zRItk5KP8Hg1dEpTnQgnNA/A6E
+        9xy9+ZvsfAC0wDko7x8IOwXlfwM2YxIBJKoSmC0XdwIAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

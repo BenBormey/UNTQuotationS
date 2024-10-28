@@ -11,7 +11,7 @@ namespace UNT_quotation.Data
 {
     internal class Database
     {
-        public static SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-KAJJLGQ\BORMEYBEN; Initial Catalog=QutationImformationHome; User ID = sa; Password=123;Integrated Security=True;TrustServerCertificate=true;Trusted_Connection=false");
+        public static SqlConnection con = new SqlConnection(@"Data Source =.; Initial Catalog=QutationImformationHome; User ID = sa; Password=123;Integrated Security=True;TrustServerCertificate=true;Trusted_Connection=false");
         public static SqlCommand cmd;
         public static SqlDataAdapter da;
         public static DataTable tbl;
@@ -20,10 +20,11 @@ namespace UNT_quotation.Data
             try
             {
 
-                if (con.State != ConnectionState.Open)
+                if (con.State==ConnectionState.Closed)
                 {
 
                     con.Open();
+                    MessageBox.Show("Open");
 
                 }
 

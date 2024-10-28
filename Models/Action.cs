@@ -9,23 +9,33 @@ namespace UNTQuotation.Models
 {
     internal class Action : IAction
     {
-        public virtual void create(DataGridView dg)
+        public virtual void Create(DataGridView dg)
         {
           
         }
 
-        public virtual void ExportExcel(DataGridView dg)
+        public virtual void DeleteById(DataGridView dg)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void Price(DataGridView dg)
+        public virtual void ExportToExcel(DataGridView dg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public  virtual void LoadingData(DataGridView dg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void PrintReprot(DataGridView dg)
         {
             throw new NotImplementedException();
         }
 
 
-        public virtual void Update(DataGridView dg)
+        public virtual void UpdateById(DataGridView dg)
         {
             throw new NotImplementedException();
         }

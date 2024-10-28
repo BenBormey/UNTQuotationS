@@ -46,10 +46,8 @@ namespace UNTQuotation.Models
         {
             try
             {
-                this.SQL = "select * from QuotationDetail;";
-
+                this.SQL = "select * from QuotationDetail";
                 Database.cmd = new SqlCommand(this.SQL, Database.con);
-
                 Database.cmd.ExecuteNonQuery();
                 Database.da = new SqlDataAdapter(Database.cmd);
                 Database.tbl = new DataTable();
@@ -119,7 +117,7 @@ namespace UNTQuotation.Models
             }
             return id;
         }
-        public override void create(DataGridView dg)
+        public override void Create(DataGridView dg)
         {
 
             try

@@ -1,6 +1,6 @@
 ﻿namespace UNTQuotation
 {
-    partial class Quotation
+    partial class QuotationForm
     {
         /// <summary>
         /// Required designer variable.
@@ -45,10 +45,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.buttonExport = new System.Windows.Forms.Button();
+            this.btnExportToExcel = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttoUpdate = new System.Windows.Forms.Button();
-            this.buttonPrint = new System.Windows.Forms.Button();
+            this.btnPrintReport = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvQuotation = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,8 +69,8 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.cbovalitity = new System.Windows.Forms.ComboBox();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnAddService = new System.Windows.Forms.Button();
+            this.btnAddCustomer = new System.Windows.Forms.Button();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuotation)).BeginInit();
@@ -234,25 +234,31 @@
             this.label11.TabIndex = 64;
             this.label11.Text = "List ";
             // 
-            // buttonExport
+            // btnExportToExcel
             // 
-            this.buttonExport.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonExport.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.buttonExport.Location = new System.Drawing.Point(630, 598);
-            this.buttonExport.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(143, 36);
-            this.buttonExport.TabIndex = 66;
-            this.buttonExport.Text = "Export To Excel";
-            this.buttonExport.UseVisualStyleBackColor = false;
-            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
+            this.btnExportToExcel.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnExportToExcel.FlatAppearance.BorderSize = 0;
+            this.btnExportToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportToExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportToExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExportToExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportToExcel.Location = new System.Drawing.Point(630, 598);
+            this.btnExportToExcel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.Size = new System.Drawing.Size(143, 36);
+            this.btnExportToExcel.TabIndex = 66;
+            this.btnExportToExcel.Text = "Export To Excel";
+            this.btnExportToExcel.UseVisualStyleBackColor = false;
+            this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
             // 
             // buttonClose
             // 
             this.buttonClose.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonClose.FlatAppearance.BorderSize = 0;
+            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClose.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.buttonClose.ForeColor = System.Drawing.Color.White;
+            this.buttonClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonClose.Location = new System.Drawing.Point(839, 598);
             this.buttonClose.Margin = new System.Windows.Forms.Padding(2);
             this.buttonClose.Name = "buttonClose";
@@ -265,8 +271,11 @@
             // buttoUpdate
             // 
             this.buttoUpdate.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttoUpdate.FlatAppearance.BorderSize = 0;
+            this.buttoUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttoUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttoUpdate.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.buttoUpdate.ForeColor = System.Drawing.Color.White;
+            this.buttoUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttoUpdate.Location = new System.Drawing.Point(212, 598);
             this.buttoUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.buttoUpdate.Name = "buttoUpdate";
@@ -276,19 +285,22 @@
             this.buttoUpdate.UseVisualStyleBackColor = false;
             this.buttoUpdate.Click += new System.EventHandler(this.buttoUpdate_Click);
             // 
-            // buttonPrint
+            // btnPrintReport
             // 
-            this.buttonPrint.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.buttonPrint.Location = new System.Drawing.Point(414, 598);
-            this.buttonPrint.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(143, 36);
-            this.buttonPrint.TabIndex = 70;
-            this.buttonPrint.Text = "Print";
-            this.buttonPrint.UseVisualStyleBackColor = false;
-            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
+            this.btnPrintReport.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnPrintReport.FlatAppearance.BorderSize = 0;
+            this.btnPrintReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintReport.ForeColor = System.Drawing.Color.White;
+            this.btnPrintReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintReport.Location = new System.Drawing.Point(414, 598);
+            this.btnPrintReport.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPrintReport.Name = "btnPrintReport";
+            this.btnPrintReport.Size = new System.Drawing.Size(143, 36);
+            this.btnPrintReport.TabIndex = 70;
+            this.btnPrintReport.Text = "Print";
+            this.btnPrintReport.UseVisualStyleBackColor = false;
+            this.btnPrintReport.Click += new System.EventHandler(this.btnPrintReport_Click);
             // 
             // groupBox1
             // 
@@ -440,8 +452,11 @@
             // buttonSave
             // 
             this.buttonSave.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonSave.FlatAppearance.BorderSize = 0;
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.buttonSave.ForeColor = System.Drawing.Color.White;
+            this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSave.Location = new System.Drawing.Point(28, 598);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSave.Name = "buttonSave";
@@ -465,36 +480,36 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // button2
+            // btnAddService
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.button2.Image = global::UNT_Quotation.Properties.Resources.folder_plus_circle__1_;
-            this.button2.Location = new System.Drawing.Point(497, 285);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(36, 23);
-            this.button2.TabIndex = 92;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnAddService.BackColor = System.Drawing.Color.White;
+            this.btnAddService.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnAddService.FlatAppearance.BorderSize = 0;
+            this.btnAddService.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddService.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAddService.Image = global::UNT_Quotation.Properties.Resources.folder_plus_circle__1_;
+            this.btnAddService.Location = new System.Drawing.Point(497, 285);
+            this.btnAddService.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddService.Name = "btnAddService";
+            this.btnAddService.Size = new System.Drawing.Size(36, 23);
+            this.btnAddService.TabIndex = 92;
+            this.btnAddService.UseVisualStyleBackColor = false;
+            this.btnAddService.Click += new System.EventHandler(this.btnAddService_Click);
             // 
-            // button3
+            // btnAddCustomer
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.button3.Image = global::UNT_Quotation.Properties.Resources.folder_plus_circle__1_;
-            this.button3.Location = new System.Drawing.Point(497, 73);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(36, 23);
-            this.button3.TabIndex = 93;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnAddCustomer.BackColor = System.Drawing.Color.White;
+            this.btnAddCustomer.FlatAppearance.BorderSize = 0;
+            this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddCustomer.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAddCustomer.Image = global::UNT_Quotation.Properties.Resources.folder_plus_circle__1_;
+            this.btnAddCustomer.Location = new System.Drawing.Point(497, 73);
+            this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddCustomer.Name = "btnAddCustomer";
+            this.btnAddCustomer.Size = new System.Drawing.Size(36, 23);
+            this.btnAddCustomer.TabIndex = 93;
+            this.btnAddCustomer.UseVisualStyleBackColor = false;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
             // txtAddress
             // 
@@ -504,19 +519,20 @@
             this.txtAddress.Size = new System.Drawing.Size(320, 89);
             this.txtAddress.TabIndex = 47;
             // 
-            // Quotation
+            // QuotationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1024, 655);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnAddCustomer);
+            this.Controls.Add(this.btnAddService);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.buttonPrint);
+            this.Controls.Add(this.btnPrintReport);
             this.Controls.Add(this.buttoUpdate);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonClose);
-            this.Controls.Add(this.buttonExport);
+            this.Controls.Add(this.btnExportToExcel);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtRemark);
             this.Controls.Add(this.label10);
@@ -539,7 +555,7 @@
             this.Controls.Add(this.cboQuoted);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label15);
-            this.Name = "Quotation";
+            this.Name = "QuotationForm";
             this.Text = "Quotation Imformation";
             this.Load += new System.EventHandler(this.Quotation_Load);
             this.groupBox1.ResumeLayout(false);
@@ -567,10 +583,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button buttonExport;
+        private System.Windows.Forms.Button btnExportToExcel;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Button buttoUpdate;
-        private System.Windows.Forms.Button buttonPrint;
+        private System.Windows.Forms.Button btnPrintReport;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvQuotation;
         private System.Windows.Forms.Label label15;
@@ -579,8 +595,8 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.ComboBox cbovalitity;
         private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnAddService;
+        private System.Windows.Forms.Button btnAddCustomer;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
