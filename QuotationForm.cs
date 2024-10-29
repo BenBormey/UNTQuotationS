@@ -14,6 +14,7 @@ using System.Drawing.Printing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms;
 using UNT_Quotation.Funtion;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace UNTQuotation
 {
@@ -24,18 +25,19 @@ namespace UNTQuotation
             InitializeComponent();
             Database.connetion();
         }
-        QuotationModels quotations;
+        Quotation quotation;
         private void Quotation_Load(object sender, EventArgs e)
         {
-            ForeColor = Color.Black;
-            BackColor = Color.LightGray;
-            quotations = new QuotationModels();
-            quotations.SetQuotation(cboQuoted);
-            quotations.SetService(cboDsSevice);
+            //ForeColor = Color.Black;
+            //BackColor = Color.LightGray;
+            quotation = new Quotation();
+            quotation.SetCustomer(cboCustomerName);
+            quotation.SetService(cboService);
             cbovalitity.Items.Add("45 Day");
             cbovalitity.Items.Add("75 Day");
             cbovalitity.Items.Add("100 Day");
-            // quotations.loadData(dgvQuotation);
+            quotation.SetCustomer(cboCustomerName);
+            quotation.SetService(cboService);
 
 
 
@@ -55,10 +57,9 @@ namespace UNTQuotation
         private void cboQuoted_KeyPress(object sender, KeyPressEventArgs e)
 
         {
-            quotations = new QuotationModels();
-
-            QuotationModels.QuotedName = cboQuoted.Text;
-            quotations.GetQuotation(txtAddress, txtAttention);
+            quotation = new Quotation();
+            quotation.CustomerName = cboCustomerName.Text;
+            quotation.GetCustomerAddress(cboCustomerName,txtAddress, txtAttention);
 
         }
 
@@ -66,8 +67,8 @@ namespace UNTQuotation
         {
             QuotationForm quotation = new QuotationForm();
             quotation.ShowDialog();
-            cboQuoted.Items.Clear();
-            quotations.SetQuotation(cboQuoted);
+            cboCustomerName.Items.Clear();
+            this.quotation.SetCustomer(cboCustomerName);
 
         }
 
@@ -75,29 +76,8 @@ namespace UNTQuotation
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (Funtions.startBox(txtAddress, txtAttention, txtQuotationId, txtRemark, txtRate, txtUnit) == 0)
-            {
-                return;
-            }
-            quotations = new QuotationModels();
-            QuotationModels.QuotedName = cboQuoted.Text;
-            quotations.Address = txtAddress.Text;
-            quotations.Attention = txtAttention.Text;
-            quotations.Desscription = cboDsSevice.Text;
-            quotations.Date = dobDate.Value;
-            quotations.Validity = cbovalitity.Text;
-            quotations.QuotationId = int.Parse(txtQuotationId.Text);
-            quotations.Unit = txtUnit.Text;
-            quotations.Rate = double.Parse(txtRate.Text);
-            quotations.ReMark = txtRemark.Text;
-            quotations.Create(dgvQuotation);
-            Funtions.ClearBox(txtQuotationId, txtRemark, txtRate, txtUnit);
-            cboDsSevice.Text = " ";
-
-            cbovalitity.Text = " ";
-
-
-
+            quotation=new Quotation();
+            quotation.CommitQuationData(dgQuotation);
         }
 
         private void dobValidity_SelectedIndexChanged(object sender, EventArgs e)
@@ -110,8 +90,8 @@ namespace UNTQuotation
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-            Bitmap pr = new Bitmap(this.dgvQuotation.Width, this.dgvQuotation.Height);
-            dgvQuotation.DrawToBitmap(pr, new Rectangle(0, 0, this.dgvQuotation.Width, this.dgvQuotation.Height));
+            Bitmap pr = new Bitmap(this.dgQuotation.Width, this.dgQuotation.Height);
+            dgQuotation.DrawToBitmap(pr, new Rectangle(0, 0, this.dgQuotation.Width, this.dgQuotation.Height));
             e.Graphics.DrawImage(pr, 10, 10);
         }
 
@@ -127,17 +107,17 @@ namespace UNTQuotation
         {
             QuotationForm quotationForm = new QuotationForm();
             quotationForm.ShowDialog();
-            quotations = new QuotationModels();
-            cboQuoted.Items.Clear();
-            quotations.SetQuotation(cboQuoted);
+            quotation = new Quotation();
+            cboCustomerName.Items.Clear();
+            quotation.SetCustomer(cboCustomerName);
 
         }
 
 
         private void dgvQuotation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            quotations = new QuotationModels();
-            quotations.TranferData(dgvQuotation, txtAttention, cboDsSevice, txtRate, txtUnit, txtRemark, txtAddress, txtAttention, txtQuotationId, cbovalitity, cboQuoted);
+            quotation = new Quotation();
+            quotation.TranferData(dgQuotation, txtAttention, cboService, txtRate, txtUnit, txtRemark, txtAddress, txtAttention, txtQuotationId, cbovalitity, cboCustomerName);
             //  quotations.TranferData(dgvQuotation);
         }
 
@@ -150,31 +130,12 @@ namespace UNTQuotation
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
-            quotations = new QuotationModels();
-            quotations.PrintData(dgvQuotation);
+             
         }
 
         private void buttoUpdate_Click(object sender, EventArgs e)
         {
-            if (Funtions.startBox(txtAddress, txtAttention, txtQuotationId, txtRemark, txtRate, txtUnit) == 0)
-            {
-                return;
-            }
-            quotations = new QuotationModels();
-            QuotationModels.QuotedName = cboQuoted.Text;
-            quotations.Address = txtAddress.Text;
-            quotations.Attention = txtAttention.Text;
-            quotations.Desscription = cboDsSevice.Text;
-            quotations.Date = dobDate.Value;
-            quotations.Validity = cbovalitity.Text;
-            quotations.QuotationId = int.Parse(txtQuotationId.Text);
-            quotations.Unit = txtUnit.Text;
-            quotations.Rate = double.Parse(txtRate.Text);
-            quotations.ReMark = txtRemark.Text;
-            quotations.Update(dgvQuotation);
-            Funtions.ClearBox(txtQuotationId, txtRemark, txtRate, txtUnit);
-            cboDsSevice.Text = " ";
-            cbovalitity.Text = " ";
+             
         }
 
         private void btnAddService_Click(object sender, EventArgs e)
@@ -196,7 +157,53 @@ namespace UNTQuotation
 
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
+            quotation=new Quotation();
+            quotation.ExportToExcel(dgQuotation);
+        }
+        public static  int RowNumber = 1;
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            int check = Funtions.CheckDouplicatedItem("select Id  from tblQuotation where Id=@ItemName", txtQuotationId, "Quotation Id");
+            if (check == 1)
+            {
+                return;
+            }
+            quotation =new Quotation();
+            quotation.QuotationId=txtQuotationId.Text.Trim();
+            quotation.CustomerId=quotation.GetCustomerAddress(cboCustomerName,txtAddress,txtAttention);
+            quotation.QuotationDate=dtpDate.Value;
+            quotation.Validity = cbovalitity.Text.Trim();
+            quotation.ServiceId = quotation.GetServiceId(cboService);
+            quotation.ServiceName = cboService.Text.Trim();
+            quotation.Unit=Convert.ToInt32( txtUnit.Text.Trim());
+            quotation.Rate =Convert.ToDouble(txtRate.Text.Trim());
+            quotation.Remark = txtRemark.Text.Trim();
+            foreach (DataGridViewRow DGV in dgQuotation.Rows)
+            {
+                int chechCustomerId,chechServiceId;
+                chechCustomerId=Convert.ToInt32(DGV.Cells[2].Value);
+                chechServiceId = Convert.ToInt32(DGV.Cells[4].Value);
+                if (chechServiceId==quotation.ServiceId)
+                {
+                    MessageBox.Show("Service Id has been allready!");
+                    cboService.Focus();
+                    return;
+                }
+               
+            }
+            Object[] row = {RowNumber, quotation.QuotationId,quotation.CustomerId,quotation.QuotationDate,quotation.ServiceId, quotation.Validity, quotation.ServiceName,quotation.Unit,quotation.Rate,quotation.Remark,quotation.Amount()};
+            dgQuotation.Rows.Add(row);
+            RowNumber++;
 
+        }
+
+        private void txtQuotationId_Leave(object sender, EventArgs e)
+        {
+            int check=Funtions.CheckDouplicatedItem("select Id  from tblQuotation where Id=@ItemName", txtQuotationId, "Quotation Id");
+            if (check == 1)
+            {
+                return;
+            }
         }
     }
 }

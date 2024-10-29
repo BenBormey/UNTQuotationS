@@ -72,6 +72,7 @@
             this.txtServiceName.Size = new System.Drawing.Size(293, 24);
             this.txtServiceName.TabIndex = 63;
             this.txtServiceName.Tag = "";
+            this.txtServiceName.Leave += new System.EventHandler(this.txtServiceName_Leave);
             // 
             // dgService
             // 
@@ -203,6 +204,7 @@
             this.Name = "ServiceForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CustomerForm";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.QuotationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgService)).EndInit();
             this.ResumeLayout(false);

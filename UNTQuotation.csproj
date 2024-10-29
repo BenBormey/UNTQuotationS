@@ -65,7 +65,7 @@
     <Compile Include="Funtion\Funtions.cs" />
     <Compile Include="Models\Action.cs" />
     <Compile Include="Models\IAction.cs" />
-    <Compile Include="Models\QuotationModels.cs" />
+    <Compile Include="Models\Quotation.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +100,7 @@
     <EmbeddedResource Include="Views\CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\reports\quotation_report.xlsx" />
     <None Include="bin\Debug\Report\Quotation_Report.xlsx" />
     <None Include="bin\Debug\UNT Quotation.exe.config" />
     <None Include="packages.config" />

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
             this.label15 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -86,7 +86,7 @@
             this.txtQuotedName.Multiline = true;
             this.txtQuotedName.Name = "txtQuotedName";
             this.txtQuotedName.Size = new System.Drawing.Size(293, 24);
-            this.txtQuotedName.TabIndex = 63;
+            this.txtQuotedName.TabIndex = 1;
             this.txtQuotedName.Tag = "";
             // 
             // txtAttenTion
@@ -95,7 +95,7 @@
             this.txtAttenTion.Multiline = true;
             this.txtAttenTion.Name = "txtAttenTion";
             this.txtAttenTion.Size = new System.Drawing.Size(293, 24);
-            this.txtAttenTion.TabIndex = 65;
+            this.txtAttenTion.TabIndex = 3;
             // 
             // label1
             // 
@@ -113,7 +113,7 @@
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(293, 24);
-            this.txtAddress.TabIndex = 67;
+            this.txtAddress.TabIndex = 2;
             // 
             // label2
             // 
@@ -131,7 +131,9 @@
             this.txtContactNo.Multiline = true;
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(297, 24);
-            this.txtContactNo.TabIndex = 73;
+            this.txtContactNo.TabIndex = 5;
+            this.txtContactNo.Leave += new System.EventHandler(this.txtContactNo_Leave);
+            this.txtContactNo.MouseLeave += new System.EventHandler(this.txtContactNo_MouseLeave);
             // 
             // label3
             // 
@@ -149,7 +151,7 @@
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(297, 24);
-            this.txtEmail.TabIndex = 71;
+            this.txtEmail.TabIndex = 6;
             // 
             // label4
             // 
@@ -168,7 +170,7 @@
             this.txtkhmerName.Multiline = true;
             this.txtkhmerName.Name = "txtkhmerName";
             this.txtkhmerName.Size = new System.Drawing.Size(297, 36);
-            this.txtkhmerName.TabIndex = 69;
+            this.txtkhmerName.TabIndex = 4;
             // 
             // label5
             // 
@@ -241,8 +243,8 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column4.HeaderText = "KhmerName";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -278,7 +280,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(143, 36);
-            this.btnClose.TabIndex = 82;
+            this.btnClose.TabIndex = 10;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -297,7 +299,7 @@
             this.btuDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btuDelete.Name = "btuDelete";
             this.btuDelete.Size = new System.Drawing.Size(143, 36);
-            this.btuDelete.TabIndex = 81;
+            this.btuDelete.TabIndex = 9;
             this.btuDelete.Text = "Delete";
             this.btuDelete.UseVisualStyleBackColor = false;
             this.btuDelete.Click += new System.EventHandler(this.btuDelete_Click);
@@ -315,7 +317,7 @@
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(143, 36);
-            this.btnUpdate.TabIndex = 80;
+            this.btnUpdate.TabIndex = 8;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -333,7 +335,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(143, 36);
-            this.btnSave.TabIndex = 79;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -367,6 +369,7 @@
             this.Name = "CustomerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CustomerForm";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.QuotationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgCustomer)).EndInit();
             this.ResumeLayout(false);

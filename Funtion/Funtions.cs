@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UNT_quotation.Data;
+using System.Data.SqlClient;
 
 namespace UNT_Quotation.Funtion
 {
@@ -29,6 +31,32 @@ namespace UNT_Quotation.Funtion
             }
 
 
+        }
+        public static string Sql { get; set; }
+        public static int CheckDouplicatedItem(string sql,TextBox txtItemName,string message)
+        {
+            try
+            {
+                Sql =sql;
+                Database.cmd = new SqlCommand(Sql, Database.con);
+                Database.cmd.Parameters.AddWithValue("@ItemName", txtItemName.Text.Trim());
+                Database.cmd.ExecuteNonQuery();
+                Database.da = new SqlDataAdapter(Database.cmd);
+                Database.tbl = new System.Data.DataTable();
+                Database.da.Fill(Database.tbl);
+                if (Database.tbl.Rows.Count > 0)
+                {
+                    MessageBox.Show($"{message} has been already!");
+                    txtItemName.Focus();
+                    return 1;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error check douplicate item:{ex}");
+            }
+            return 0;
         }
     }
 }

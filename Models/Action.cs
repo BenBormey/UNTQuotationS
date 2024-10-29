@@ -39,5 +39,10 @@ namespace UNTQuotation.Models
         {
             throw new NotImplementedException();
         }
+
+        public virtual void ExportToExcel()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

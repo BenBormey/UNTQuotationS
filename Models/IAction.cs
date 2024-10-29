@@ -15,6 +15,7 @@ namespace UNTQuotation.Models
         void LoadingData(DataGridView dg);
         void PrintReprot(DataGridView dg);    
         void ExportToExcel(DataGridView dg);
+        void ExportToExcel();
 
 
     }

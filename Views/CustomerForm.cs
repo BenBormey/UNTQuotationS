@@ -24,9 +24,9 @@ namespace UNT_Quotation.Views
         {
             customer = new Customer();
             customer.LoadingData(dgCustomer);
-            Font = new Font("Arial", 10); // Regular font for data
-            ForeColor = Color.Black; // Text color
-            BackColor = Color.LightGray; // Background color
+            //Font = new Font("Arial", 10); // Regular font for data
+            //ForeColor = Color.Black; // Text color
+            //BackColor = Color.LightGray; // Background color
                                          //  Alignment = DataGridViewContentAlignment.MiddleLeft;// Align text to the left
         }
 
@@ -37,7 +37,7 @@ namespace UNT_Quotation.Views
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (Funtions.startBox(txtAddress, txtContactNo, txtEmail, txtkhmerName, txtQuotedName, txtAttenTion) == 0)
+            if (Funtions.startBox(txtQuotedName, txtAddress, txtAttenTion, txtkhmerName, txtContactNo, txtEmail) == 0)
             {
                 return;
             }
@@ -48,10 +48,20 @@ namespace UNT_Quotation.Views
             customer.ContactNo = txtContactNo.Text;
             customer.Email = txtEmail.Text;
             customer.EnglishName = txtQuotedName.Text;
+            int check =
+            Funtions.CheckDouplicatedItem("select ContactNumber from tblCustomers where ContactNumber=@ItemName", txtContactNo, "Contuct Us");
+            if (check == 1)
+            {
+                return;
+            }
+            int check1 = Funtions.CheckDouplicatedItem("select Email from tblCustomers where Email=@ItemName", txtEmail, "Email");
+            if (check1 == 1)
+            {
+                return;
+            }
             customer.Create(dgCustomer);
-            dgCustomer.Rows.Clear();
             customer.LoadingData(dgCustomer);
-            Funtions.ClearBox(txtAddress, txtContactNo, txtEmail, txtkhmerName, txtQuotedName, txtAttenTion);
+            Funtions.ClearBox(txtQuotedName, txtAddress, txtAttenTion, txtkhmerName, txtContactNo, txtEmail);
 
         }
 
@@ -68,7 +78,7 @@ namespace UNT_Quotation.Views
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (Funtions.startBox(txtAddress, txtContactNo, txtEmail, txtkhmerName, txtQuotedName, txtAttenTion) == 0)
+            if (Funtions.startBox(txtQuotedName, txtAddress, txtAttenTion, txtkhmerName, txtContactNo, txtEmail) == 0)
             {
                 return;
             }
@@ -79,9 +89,34 @@ namespace UNT_Quotation.Views
             customer.ContactNo = txtContactNo.Text;
             customer.Email = txtEmail.Text;
             customer.EnglishName = txtQuotedName.Text;
-            customer.UpdateById(dgCustomer);
-            dgCustomer.Rows.Clear();
-            Funtions.ClearBox(txtAddress, txtContactNo, txtEmail, txtkhmerName, txtQuotedName, txtAttenTion);
+            txtContactNo_Leave(sender, e);
+            txtEmail_Leave(sender, e);
+            customer.UpdateById(dgCustomer); 
+            Funtions.ClearBox(txtQuotedName, txtAddress, txtAttenTion, txtkhmerName, txtContactNo, txtEmail);
+        }
+
+        private void txtContactNo_MouseLeave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtContactNo_Leave(object sender, EventArgs e)
+        {
+            int check =
+            Funtions.CheckDouplicatedItem("select ContactNumber from tblCustomers where ContactNumber=@ItemName", txtContactNo, "Contuct Us");
+            if (check == 1)
+            {
+                return;
+            }
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            int check = Funtions.CheckDouplicatedItem("select Email from tblCustomers where Email=@ItemName", txtEmail, "Email");
+            if(check == 1)
+            {
+                return;
+            }
         }
     }
 }

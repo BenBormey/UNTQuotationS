@@ -24,7 +24,7 @@ namespace UNT_quotation.Data
                 {
 
                     con.Open();
-                    MessageBox.Show("Open");
+                    //MessageBox.Show("Open");
 
                 }
 

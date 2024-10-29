@@ -95,6 +95,7 @@ namespace UNTQuotation.Models
                 Database.da = new SqlDataAdapter(Database.cmd);
                 Database.tbl = new DataTable();
                 Database.da.Fill(Database.tbl);
+                dg.Rows.Clear();
                 foreach (DataRow r in Database.tbl.Rows)
                 {
                     object[] row = { r["Id"], r["EnglishName"], r["Address"], r["AttentionTo"], r["KhmerName"], r["ContactNumber"], r["Email"] };
