@@ -85,10 +85,14 @@ namespace UNT_Quotation.Views
 
         private void txtServiceName_Leave(object sender, EventArgs e)
         {
-            int chech=Funtions.CheckDouplicatedItem("select ServiceName from tblService where ServiceName=@ItemName", txtServiceName, "Service Name");
-            if (chech == 1)
+             
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)13)
             {
-                return;
+                service.SearchItem(dgService,txtSearch);
             }
         }
     }

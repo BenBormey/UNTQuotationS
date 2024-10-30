@@ -14,10 +14,10 @@ namespace UNTQuotation.Models
 {
     internal class Quotation :Action
     {
-        public long Id { get; set; }
+        // public long Id { get; set; }
+        public long QuotationId { get; set; }
         public DateTime QuotationDate { get; set; }
         public string Validity { get; set; }
-        public string QuotationId { get; set; }
         public int Unit { get; set; }
         public double Rate { get; set; }
         public string Remark { get; set; }
@@ -150,7 +150,7 @@ namespace UNTQuotation.Models
             Object[] row = {1,this.CustomerId};
             dgQuotation.Rows.Add(row);
         }
-        public void CommitQuationData(DataGridView dgQuotation)
+        public void CommitQuotationData(DataGridView dgQuotation)
         {
             SqlTransaction sqlTransaction = null;
             try
@@ -161,19 +161,17 @@ namespace UNTQuotation.Models
                 }
                 DataGridViewRow DGV = new DataGridViewRow();
                 DGV=dgQuotation.SelectedRows[0];
-                this.QuotationId = DGV.Cells[1].Value.ToString();
+                this.QuotationId = Convert.ToInt64(DGV.Cells[1].Value.ToString());
                 this.CustomerId = Convert.ToInt32(DGV.Cells[2].Value.ToString());
                 this.QuotationDate = Convert.ToDateTime(DGV.Cells[3].Value.ToString());
                 sqlTransaction = Database.con.BeginTransaction();
-                this.SQL = "INSERT INTO tblQuotation(Id,UserId,CustomerId,QuotationDate,TotalAmount) VALUES(@Id,@UserId,@CustomerId,@QuotationDate,@TotalAmount)";
+                this.SQL = "INSERT INTO tblQuotation(UserId,CustomerId,QuotationDate,TotalAmount) VALUES(@UserId,@CustomerId,@QuotationDate,@TotalAmount)select SCOPE_IDENTITY()";
                 Database.cmd = new SqlCommand(this.SQL, Database.con,sqlTransaction);
-
-                Database.cmd.Parameters.AddWithValue("@Id", this.QuotationId);
                 Database.cmd.Parameters.AddWithValue("@UserId", User.CreateBy);
                 Database.cmd.Parameters.AddWithValue("@CustomerId", this.CustomerId);
                 Database.cmd.Parameters.AddWithValue("@QuotationDate", this.QuotationDate);
                 Database.cmd.Parameters.AddWithValue("@TotalAmount", this.TotalAmount(dgQuotation));
-                Database.cmd.ExecuteScalar();
+                this.QuotationId=Convert.ToInt64(Database.cmd.ExecuteScalar());
                 foreach (DataGridViewRow dgv in dgQuotation.Rows)
                 {
                     this.ServiceId = Convert.ToInt16(dgv.Cells[4].Value.ToString());
@@ -195,7 +193,9 @@ namespace UNTQuotation.Models
 
                 }
                 sqlTransaction.Commit();
+                dgQuotation.Rows.Clear();
                 MessageBox.Show("Create quotation successfully!");
+                this.PrintReprot(this.QuotationId);
             }
             catch(Exception ex)
             {
@@ -235,7 +235,7 @@ namespace UNTQuotation.Models
             }
             DataGridViewRow DGV = new DataGridViewRow();
             DGV = dg.SelectedRows[0];
-            this.QuotationId = DGV.Cells[1].Value.ToString();
+            this.QuotationId =Convert.ToInt64(DGV.Cells[1].Value.ToString());
             try
             {
                 this.SQL = "select * from view_quotation_report where QuotationId=@QuotationId";
@@ -299,121 +299,74 @@ namespace UNTQuotation.Models
                 MessageBox.Show($"Error print report to excel:{e.Message}");
             }
         }
-        //public void PrintData(DataGridView dg)
-        //{
-        //    Microsoft.Office.Interop.Excel.Application Xa = new
-        //    Microsoft.Office.Interop.Excel.Application();
-        //    Microsoft.Office.Interop.Excel.Workbook Wb;
-        //    Microsoft.Office.Interop.Excel.Worksheet Ws;
+        public void PrintReprot(long QuotationId)
+        {
+            Microsoft.Office.Interop.Excel.Application Xa = new
+            Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook Wb;
+            Microsoft.Office.Interop.Excel.Worksheet Ws;
+            try
+            {
+                this.SQL = "select * from view_quotation_report where QuotationId=@QuotationId";
+                Database.cmd = new SqlCommand(SQL, Database.con);
+                Database.cmd.Parameters.AddWithValue("@QuotationId", this.QuotationId);
+                Database.cmd.ExecuteNonQuery();
+                Database.da = new SqlDataAdapter(Database.cmd);
+                Database.tbl = new DataTable();
+                Database.da.Fill(Database.tbl);
+                string pathFileReport = Application.StartupPath + @"\reports\quotation_report.xlsx";
+                Wb = Xa.Workbooks.Open(pathFileReport, false, false, true);
+                //get excel sheet
+                Ws = Wb.Worksheets["Sheet1"];
+                int row = 19;
+                int i = 1;
+                Ws.Cells[6, 6] = Database.tbl.Rows[0]["QuotationId"];
+                Ws.Cells[6, 8] = Database.tbl.Rows[0]["QuotationDate"];
+                Ws.Cells[8, 6] = Database.tbl.Rows[0]["CustomerId"];
+                foreach (DataRow r in Database.tbl.Rows)
+                {
+                    Ws.Cells[row, 1] = i;
+                    Ws.Cells[row, 2] = r["ServiceName"].ToString();
+                    Ws.Cells[row, 6] = r["Unit"].ToString();
+                    Ws.Cells[row, 7] = r["Rate"].ToString();
+                    Ws.Cells[row, 8] = r["Amount"].ToString();
+                    i++;
+                    row++;
+                }
 
-        //    SqlTransaction sqlTransaction = null;
-        //    try
-        //    {
-        //        sqlTransaction = Database.con.BeginTransaction();
-
-        //        string sqlPrint = "select * from Quotation where QuotedName = @QuotedName and IsSuccess = 'false';";
-        //        Database.cmd = new SqlCommand(sqlPrint, Database.con, sqlTransaction);
-        //        Database.cmd.Parameters.AddWithValue("@QuotedName", QuotedName);
-        //        Database.da = new SqlDataAdapter(Database.cmd);
-        //        Database.tbl = new DataTable();
-        //        Database.da.Fill(Database.tbl);
-        //        Database.cmd.ExecuteNonQuery();
-
-        //        string pathFileReport = Application.StartupPath + @"\Report\Quotation_Report.xlsx";
-        //        Wb = Xa.Workbooks.Open(pathFileReport, false, false, true);
-        //        //get excel sheet
-        //        Ws = Wb.Worksheets["Sheet1"];
-        //        int row = 11;
-        //        int i = 1;
-
-        //        Ws.Cells[4, 2] = Database.tbl.Rows[0]["QuotedName"];
-        //        Ws.Cells[5, 2] = Database.tbl.Rows[0]["Address"];
-        //        Ws.Cells[6, 2] = Database.tbl.Rows[0]["Attention"];
-        //        foreach (DataRow r in Database.tbl.Rows)
-        //        {
-        //            Ws.Cells[row, 1] = i;
-        //            Ws.Cells[row, 2] = r["Attention"].ToString();
-        //            Ws.Cells[row, 3] = r["Desscription"].ToString();
-        //            Ws.Cells[row, 4] = r["Rate"].ToString();
-        //            Ws.Cells[row, 5] = r["Unit"].ToString();
-        //            Ws.Cells[row, 6] = r["Remark"].ToString();
-        //            i++;
-        //            row++;
-        //        }
-
-        //        //set hide row excel
-        //        for (int j = 11; j <= 35; j++)
-        //        {
-        //            string check = Convert.ToString(Ws.Cells[j, 2].Text);
-        //            if (check.Equals(""))
-        //            {
-        //                Ws.Rows[j].Hidden = true;
-        //            }
+                //set hide row excel
+                //for (int j = 11; j <= 35; j++)
+                //{
+                //    string check = Convert.ToString(Ws.Cells[j, 2].Text);
+                //    if (check.Equals(""))
+                //    {
+                //        Ws.Rows[j].Hidden = true;
+                //    }
 
 
-        //        }
-        //        //autofit column in worksheet
-        //        Ws.Columns.AutoFit();
-        //        //show excel application
-        //        Xa.Visible = true;
-        //        //print preivew excel sheet
-        //        // Ws.PrintPreview();
-        //        //print out doc from worksheet
-        //        int pageFrom = 1, pageTo = 1, noCopy = 2;
-        //        Ws.PrintOutEx(pageFrom, pageTo, noCopy);
+                //}
+                //autofit column in worksheet
+                Ws.Columns.AutoFit();
+                //show excel application
+                Xa.Visible = true;
+                //print preivew excel sheet
+                // Ws.PrintPreview();
+                //print out doc from worksheet
+                //int pageFrom = 1, pageTo = 1, noCopy = 2;
+                //Ws.PrintOutEx(pageFrom, pageTo, noCopy);
 
-        //        // Wb.Close(false); //false mean close ingore save
-        //        //quit application
-        //        // Xa.Quit();
-        //        //clear all excel object
-        //        Ws = null; Wb = null; Xa = null;
-        //        this.sqlUpdate = "update Quotation  set IsSuccess  = 'true' where QuotedName= @QuotedName ";
-        //        Database.cmd = new SqlCommand(sqlPrint, Database.con, sqlTransaction);
-        //        Database.cmd.Parameters.AddWithValue("@QuotedName", QuotedName);
-        //        Database.da = new SqlDataAdapter(Database.cmd);
-        //        Database.tbl = new DataTable();
-        //        Database.da.Fill(Database.tbl);
-        //        Database.cmd.ExecuteNonQuery();
+                // Wb.Close(false); //false mean close ingore save
+                //quit application
+                // Xa.Quit();
+                //clear all excel object
+                Ws = null; Wb = null; Xa = null;
 
-        //        sqlTransaction.Commit();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Error print report to excel:{e.Message}");
+            }
+        }
 
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MessageBox.Show(e.Message);
-        //    }
-        //}
-        //public void Update(DataGridView dg)
-        //{
-        //    try
-        //    {
-        //        this.dgv = dg.SelectedRows[0];
-        //        Id = int.Parse(dgv.Cells[0].Value.ToString());
-        //        this.SQL = "update Quotation set Address =@Address , Attention = @Attention, Desscription = @Desscription , Date = @Date,Validity = @Validity, QuotationId=@QuotationId,Unit = @Unit,Rate = @Rate,Remark =@Remark,QuotedName = @QuotedName where id= @Id";
-        //        Database.cmd = new SqlCommand(this.SQL, Database.con);
-        //        Database.cmd.Parameters.AddWithValue("@QuotedName", QuotedName);
-        //        Database.cmd.Parameters.AddWithValue("@Address", this.Address);
-        //        Database.cmd.Parameters.AddWithValue("@Attention", this.Attention);
-        //        Database.cmd.Parameters.AddWithValue("@Desscription", this.Desscription);
-        //        Database.cmd.Parameters.AddWithValue("@Date", this.Date);
-        //        Database.cmd.Parameters.AddWithValue("@Validity", this.Validity);
-        //        Database.cmd.Parameters.AddWithValue("@QuotationId", this.QuotationId);
-        //        Database.cmd.Parameters.AddWithValue("@Unit", this.Unit);
-        //        Database.cmd.Parameters.AddWithValue("@Rate", this.Rate);
-        //        Database.cmd.Parameters.AddWithValue("@Remark", this.Remark);
-        //        Database.cmd.Parameters.AddWithValue("@Id", Id);
-        //        RowIeftive = Database.cmd.ExecuteNonQuery();
-        //        if(RowIeftive > 0)
-        //        {
-        //            MessageBox.Show("Update Sessuess!");
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        MessageBox.Show("Error: " + ex.Message);
-        //    }
-        //}
     }
 }

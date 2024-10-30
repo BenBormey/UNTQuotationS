@@ -13,7 +13,10 @@ namespace UNTQuotation.Models
         {
           
         }
-
+        public virtual void SearchItem(DataGridView dg,TextBox txtSearchItem)
+        {
+            throw new NotImplementedException();
+        }
         public virtual void DeleteById(DataGridView dg)
         {
             throw new NotImplementedException();

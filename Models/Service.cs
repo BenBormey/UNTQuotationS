@@ -69,12 +69,13 @@ namespace UNTQuotation.Models
         {
             try
             {
-                this.SQL = "select * from tblservice";
+                this.SQL = "select Top 10 * from tblservice order by ServiceId desc";
                 Database.cmd = new SqlCommand(this.SQL, Database.con);
                 Database.cmd.ExecuteNonQuery();
                 Database.da = new SqlDataAdapter(Database.cmd);
                 Database.tbl = new DataTable();
                 Database.da.Fill(Database.tbl);
+                dg.Rows.Clear();
                 foreach (DataRow r in Database.tbl.Rows)
                 {
                     object[] row = { r["ServiceId"], r["ServiceName"]};
@@ -105,7 +106,7 @@ namespace UNTQuotation.Models
         {
             try
             {   
-                if (dg.Rows.Count < 0)
+                if (dg.Rows.Count == 0)
                 {
                     return;
                 }
@@ -129,6 +130,29 @@ namespace UNTQuotation.Models
                 MessageBox.Show("Error delete service:" + ex.Message);
             }
 
+        }
+        public override void SearchItem(DataGridView dg, TextBox txtSearchItem)
+        {
+            try
+            {
+                this.SQL = "select * from tblService where ServiceName like CONCAT('%',@ServiceName,'%')";
+                Database.cmd = new SqlCommand(this.SQL, Database.con);
+                Database.cmd.Parameters.AddWithValue("@ServiceName", txtSearchItem.Text.Trim());
+                Database.cmd.ExecuteNonQuery();
+                Database.da = new SqlDataAdapter(Database.cmd);
+                Database.tbl = new DataTable();
+                Database.da.Fill(Database.tbl);
+                dg.Rows.Clear();
+                foreach (DataRow r in Database.tbl.Rows)
+                {
+                    object[] row = { r["ServiceId"], r["ServiceName"] };
+                    dg.Rows.Add(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:" + ex.Message);
+            }
         }
 
     }

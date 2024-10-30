@@ -16,7 +16,7 @@ namespace UNTQuotation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuotationForm());
+            Application.Run(new QuotationForm("d"));
         }
     }
 }

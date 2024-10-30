@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UNT_quotation.Data;
 using UNT_Quotation.Funtion;
+using UNTQuotation;
 using UNTQuotation.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace UNT_Quotation.Views
 {
@@ -24,16 +26,7 @@ namespace UNT_Quotation.Views
         {
             customer = new Customer();
             customer.LoadingData(dgCustomer);
-            //Font = new Font("Arial", 10); // Regular font for data
-            //ForeColor = Color.Black; // Text color
-            //BackColor = Color.LightGray; // Background color
-                                         //  Alignment = DataGridViewContentAlignment.MiddleLeft;// Align text to the left
-        }
-
-        private void dgvQuotationDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            customer = new Customer();
-            customer.TranferData(dgCustomer,txtQuotedName,txtAddress,txtAttenTion,txtkhmerName,txtContactNo,txtEmail);
+            
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -89,8 +82,17 @@ namespace UNT_Quotation.Views
             customer.ContactNo = txtContactNo.Text;
             customer.Email = txtEmail.Text;
             customer.EnglishName = txtQuotedName.Text;
-            txtContactNo_Leave(sender, e);
-            txtEmail_Leave(sender, e);
+            int check, check1;
+            check=Funtions.CheckDouplicatedItem("select ContactNumber from tblCustomers where ContactNumber=@ItemName", txtContactNo, "Contuct Us");
+            if (check == 1)
+            {
+                return;
+            }
+            check1 = Funtions.CheckDouplicatedItem("select Email from tblCustomers where Email=@ItemName", txtEmail, "Email");
+            if (check1 == 1)
+            {
+                return;
+            }
             customer.UpdateById(dgCustomer); 
             Funtions.ClearBox(txtQuotedName, txtAddress, txtAttenTion, txtkhmerName, txtContactNo, txtEmail);
         }
@@ -102,20 +104,38 @@ namespace UNT_Quotation.Views
 
         private void txtContactNo_Leave(object sender, EventArgs e)
         {
-            int check =
-            Funtions.CheckDouplicatedItem("select ContactNumber from tblCustomers where ContactNumber=@ItemName", txtContactNo, "Contuct Us");
-            if (check == 1)
-            {
-                return;
-            }
+            
         }
 
         private void txtEmail_Leave(object sender, EventArgs e)
         {
-            int check = Funtions.CheckDouplicatedItem("select Email from tblCustomers where Email=@ItemName", txtEmail, "Email");
-            if(check == 1)
+             
+        }
+
+        private void dgCustomer_Enter(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void dgCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            customer = new Customer();
+            customer.TranferData(dgCustomer, txtQuotedName, txtAddress, txtAttenTion, txtkhmerName, txtContactNo, txtEmail);
+        }
+        private void dgCustomer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow DGV = new DataGridViewRow();
+            DGV =dgCustomer.SelectedRows[0];
+            QuotationForm quotationForm = new QuotationForm(DGV.Cells[1].Value.ToString());
+           
+            //this.Close();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)13)
             {
-                return;
+                customer.SearchItem(dgCustomer,txtSearchItem);
             }
         }
     }

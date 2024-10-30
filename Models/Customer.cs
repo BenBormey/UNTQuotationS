@@ -89,8 +89,31 @@ namespace UNTQuotation.Models
         {
             try
             {
-                this.SQL = "select * from tblCustomers";
+                this.SQL = "select Top 10 * from tblCustomers order by Id desc";
                 Database.cmd = new SqlCommand(this.SQL, Database.con);
+                Database.cmd.ExecuteNonQuery();
+                Database.da = new SqlDataAdapter(Database.cmd);
+                Database.tbl = new DataTable();
+                Database.da.Fill(Database.tbl);
+                dg.Rows.Clear();
+                foreach (DataRow r in Database.tbl.Rows)
+                {
+                    object[] row = { r["Id"], r["EnglishName"], r["Address"], r["AttentionTo"], r["KhmerName"], r["ContactNumber"], r["Email"] };
+                    dg.Rows.Add(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:" + ex.Message);
+            }
+        }
+        public override void SearchItem(DataGridView dg,TextBox txtSearchItem)
+        {
+            try
+            {
+                this.SQL = "select * from tblCustomers where EnglishName like CONCAT('%',@EnglishName,'%') or ContactNumber=@EnglishName";
+                Database.cmd = new SqlCommand(this.SQL, Database.con);
+                Database.cmd.Parameters.AddWithValue("@EnglishName", txtSearchItem.Text.Trim());
                 Database.cmd.ExecuteNonQuery();
                 Database.da = new SqlDataAdapter(Database.cmd);
                 Database.tbl = new DataTable();
