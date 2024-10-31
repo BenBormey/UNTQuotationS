@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
             this.label15 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -60,6 +60,7 @@
             this.txtSearchItem = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCustomer)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,11 +80,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(24, 79);
+            this.label9.Location = new System.Drawing.Point(11, 30);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(112, 20);
+            this.label9.Size = new System.Drawing.Size(115, 20);
             this.label9.TabIndex = 62;
-            this.label9.Text = "QuotedName :";
+            this.label9.Text = "English Name :";
             // 
             // txtQuotedName
             // 
@@ -132,10 +133,10 @@
             // 
             // txtContactNo
             // 
-            this.txtContactNo.Location = new System.Drawing.Point(639, 124);
+            this.txtContactNo.Location = new System.Drawing.Point(624, 124);
             this.txtContactNo.Multiline = true;
             this.txtContactNo.Name = "txtContactNo";
-            this.txtContactNo.Size = new System.Drawing.Size(314, 28);
+            this.txtContactNo.Size = new System.Drawing.Size(309, 28);
             this.txtContactNo.TabIndex = 5;
             this.txtContactNo.Leave += new System.EventHandler(this.txtContactNo_Leave);
             this.txtContactNo.MouseLeave += new System.EventHandler(this.txtContactNo_MouseLeave);
@@ -152,10 +153,10 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(639, 162);
+            this.txtEmail.Location = new System.Drawing.Point(624, 162);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(314, 28);
+            this.txtEmail.Size = new System.Drawing.Size(309, 28);
             this.txtEmail.TabIndex = 6;
             // 
             // label4
@@ -171,21 +172,21 @@
             // txtkhmerName
             // 
             this.txtkhmerName.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtkhmerName.Location = new System.Drawing.Point(639, 75);
+            this.txtkhmerName.Location = new System.Drawing.Point(624, 75);
             this.txtkhmerName.Multiline = true;
             this.txtkhmerName.Name = "txtkhmerName";
-            this.txtkhmerName.Size = new System.Drawing.Size(314, 38);
+            this.txtkhmerName.Size = new System.Drawing.Size(309, 38);
             this.txtkhmerName.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(510, 79);
+            this.label5.Location = new System.Drawing.Point(494, 30);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(105, 20);
+            this.label5.Size = new System.Drawing.Size(109, 20);
             this.label5.TabIndex = 68;
-            this.label5.Text = "KhmerName :";
+            this.label5.Text = "Khmer Name :";
             // 
             // dgCustomer
             // 
@@ -211,7 +212,7 @@
             this.dgCustomer.RowHeadersWidth = 51;
             this.dgCustomer.RowTemplate.Height = 30;
             this.dgCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCustomer.Size = new System.Drawing.Size(959, 219);
+            this.dgCustomer.Size = new System.Drawing.Size(941, 219);
             this.dgCustomer.TabIndex = 78;
             this.dgCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCustomer_CellClick);
             this.dgCustomer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCustomer_CellDoubleClick);
@@ -219,19 +220,18 @@
             // 
             // Column7
             // 
-            this.Column7.HeaderText = "QuotationId";
+            this.Column7.HeaderText = "Id";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
-            this.Column7.Width = 125;
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "QuotedName";
+            this.Column1.HeaderText = "Customer Name";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 125;
+            this.Column1.Width = 150;
             // 
             // Column2
             // 
@@ -251,17 +251,17 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column4.HeaderText = "KhmerName";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column4.HeaderText = "Khmer Name";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 125;
+            this.Column4.Width = 150;
             // 
             // Column5
             // 
-            this.Column5.HeaderText = "ContactNo";
+            this.Column5.HeaderText = "Contact No";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
@@ -350,9 +350,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(12, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(965, 161);
+            this.groupBox1.Size = new System.Drawing.Size(947, 161);
             this.groupBox1.TabIndex = 79;
             this.groupBox1.TabStop = false;
             // 
@@ -363,16 +365,16 @@
             this.groupBox2.Controls.Add(this.dgCustomer);
             this.groupBox2.Location = new System.Drawing.Point(12, 217);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(965, 277);
+            this.groupBox2.Size = new System.Drawing.Size(947, 277);
             this.groupBox2.TabIndex = 80;
             this.groupBox2.TabStop = false;
             // 
             // txtSearchItem
             // 
-            this.txtSearchItem.Location = new System.Drawing.Point(157, 18);
+            this.txtSearchItem.Location = new System.Drawing.Point(131, 20);
             this.txtSearchItem.Multiline = true;
             this.txtSearchItem.Name = "txtSearchItem";
-            this.txtSearchItem.Size = new System.Drawing.Size(481, 28);
+            this.txtSearchItem.Size = new System.Drawing.Size(310, 28);
             this.txtSearchItem.TabIndex = 79;
             this.txtSearchItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -380,7 +382,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(44, 22);
+            this.label6.Location = new System.Drawing.Point(36, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 20);
             this.label6.TabIndex = 80;
@@ -392,7 +394,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(993, 558);
+            this.ClientSize = new System.Drawing.Size(978, 558);
             this.ControlBox = false;
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btuDelete);
@@ -403,13 +405,11 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtkhmerName);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtAttenTion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtQuotedName);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -421,6 +421,8 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.QuotationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgCustomer)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -448,6 +450,10 @@
         private System.Windows.Forms.Button btuDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtSearchItem;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -455,9 +461,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtSearchItem;
-        private System.Windows.Forms.Label label6;
     }
 }

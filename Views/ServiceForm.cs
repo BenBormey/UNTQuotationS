@@ -24,25 +24,33 @@ namespace UNT_Quotation.Views
         {
             service = new Service();
             service.LoadingData(dgService);
-            //Font = new Font("Arial", 10); // Regular font for data
-            //ForeColor = Color.Black; // Text color
-            //BackColor = Color.LightGray; // Background color
-                                         //  Alignment = DataGridViewContentAlignment.MiddleLeft;// Align text to the left
+            
         }
 
         private void dgvQuotationDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             service = new Service();
-            service.TranferData(dgService,txtServiceName);
+            service.TranferData(dgService,txtServiceName,txtKhServiceName,txtPrice,txtCurrency,chkActive);
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (Funtions.startBox(txtServiceName) == 0)
+            if (Funtions.startBox(txtServiceName,txtPrice,txtCurrency) == 0)
             {
                 return;
             }
             service = new Service();
-            service.ServiceName = txtServiceName.Text;
+            service.ServiceName = txtServiceName.Text.Trim();
+            service.Price =Convert.ToDouble(txtPrice.Text.Trim());
+            service.Currency = Convert.ToDouble(txtCurrency.Text.Trim());
+            if (chkActive.Checked)
+            {
+                service.IsActive = 1;
+            }
+            else
+            {
+                service.IsActive = 0;
+            }
+            
             int chech = Funtions.CheckDouplicatedItem("select ServiceName from tblService where ServiceName=@ItemName", txtServiceName, "Service Name");
             if (chech == 1)
             {
@@ -92,8 +100,17 @@ namespace UNT_Quotation.Views
         {
             if(e.KeyChar == (char)13)
             {
+                if (Funtions.startBox(txtSearch) == 0)
+                {
+                    return;
+                }
                 service.SearchItem(dgService,txtSearch);
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

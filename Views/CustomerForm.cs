@@ -93,7 +93,8 @@ namespace UNT_Quotation.Views
             {
                 return;
             }
-            customer.UpdateById(dgCustomer); 
+            customer.UpdateById(dgCustomer);
+            customer.LoadingData(dgCustomer);
             Funtions.ClearBox(txtQuotedName, txtAddress, txtAttenTion, txtkhmerName, txtContactNo, txtEmail);
         }
 
@@ -121,20 +122,30 @@ namespace UNT_Quotation.Views
         {
             customer = new Customer();
             customer.TranferData(dgCustomer, txtQuotedName, txtAddress, txtAttenTion, txtkhmerName, txtContactNo, txtEmail);
+
+            
         }
         private void dgCustomer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow DGV = new DataGridViewRow();
-            DGV =dgCustomer.SelectedRows[0];
-            QuotationForm quotationForm = new QuotationForm(DGV.Cells[1].Value.ToString());
-           
-            //this.Close();
+            QuotationForm quotationForm = (QuotationForm)Application.OpenForms["QuotationForm"];
+            int row = e.RowIndex;
+            quotationForm.cboCustomerName.Text = Convert.ToString(dgCustomer[0, row].Value);
+            quotationForm.txtCustomerName.Text = Convert.ToString(dgCustomer[1, row].Value);
+            quotationForm.txtAddress.Text = Convert.ToString(dgCustomer[2, row].Value);
+            quotationForm.txtAttention.Text = Convert.ToString(dgCustomer[3, row].Value);
+            this.Close();
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             if(e.KeyChar == (char)13)
             {
+
+                if (Funtions.startBox(txtSearchItem) == 0)
+                {
+                    return;
+                }
                 customer.SearchItem(dgCustomer,txtSearchItem);
             }
         }

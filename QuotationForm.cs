@@ -20,20 +20,26 @@ namespace UNTQuotation
 {
     public partial class QuotationForm : Form
     {
-        public QuotationForm(string name)
+        public static string name;
+        public QuotationForm()
         {
             InitializeComponent();
             Database.connetion();
-            cboCustomerName.Text = name;
+            
         }
         Quotation quotation=new Quotation();
         private void Quotation_Load(object sender, EventArgs e)
         {
-            quotation.SetCustomer(cboCustomerName);
+            //quotation.SetCustomer(cboCustomerName);
             quotation.SetService(cboService);
-            cbovalitity.Items.Add("45 Day");
-            cbovalitity.Items.Add("75 Day");
-            cbovalitity.Items.Add("100 Day");
+            //cbovalitity.Items.Add("45 Day");
+            //cbovalitity.Items.Add("75 Day");
+            //cbovalitity.Items.Add("100 Day");
+            cbovalitity.Items.Clear();
+            for (int i = 1; i <= 60; i++)
+            {
+                cbovalitity.Items.Add($"{i} Day");
+            }
         }
         private void cboQuoted_KeyPress(object sender, KeyPressEventArgs e)
 
@@ -73,7 +79,7 @@ namespace UNTQuotation
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             CustomerForm customerForm = new CustomerForm();
-            customerForm.ShowDialog();
+            customerForm.Show();
         }
 
         private void btnPrintReport_Click(object sender, EventArgs e)
@@ -86,51 +92,61 @@ namespace UNTQuotation
             quotation.ExportToExcel(dgQuotation);
         }
         public static  int RowNumber = 1;
-        private void btnAddItem_Click(object sender, EventArgs e)
+        public void AddDataToDataGrid()
         {
             if (cboCustomerName.Text.Equals(""))
             {
                 cboCustomerName.Focus();
                 return;
             }
+            
             if (cboService.Text.Equals(""))
             {
                 cboService.Focus();
+                return;
+            }
+            if (cbovalitity.Text.Equals(""))
+            {
+                cbovalitity.Focus();
                 return;
             }
             if (Funtions.startBox(txtUnit, txtRate) == 0)
             {
                 return;
             }
-            quotation.CustomerId=quotation.GetCustomerAddress(cboCustomerName,txtAddress,txtAttention);
-            quotation.QuotationDate=dtpDate.Value;
+            quotation.CustomerId =Convert.ToInt32(cboCustomerName.Text.Trim());
+            quotation.QuotationDate = dtpDate.Value;
             quotation.Validity = cbovalitity.Text.Trim();
             quotation.ServiceId = quotation.GetServiceId(cboService);
             quotation.ServiceName = cboService.Text.Trim();
-            quotation.Unit=Convert.ToInt32( txtUnit.Text.Trim());
-            quotation.Rate =Convert.ToDouble(txtRate.Text.Trim());
+            quotation.Unit = Convert.ToInt32(txtUnit.Text.Trim());
+            quotation.Rate = Convert.ToDouble(txtRate.Text.Trim());
             quotation.Remark = txtRemark.Text.Trim();
             foreach (DataGridViewRow DGV in dgQuotation.Rows)
             {
-                int chechCustomerId,chechServiceId;
-                chechCustomerId=Convert.ToInt32(DGV.Cells[2].Value);
+                int chechCustomerId, chechServiceId;
+                chechCustomerId = Convert.ToInt32(DGV.Cells[2].Value);
                 chechServiceId = Convert.ToInt32(DGV.Cells[4].Value);
-                if (chechServiceId==quotation.ServiceId)
+                if (chechServiceId == quotation.ServiceId)
                 {
                     MessageBox.Show("Service Id has been allready!");
                     cboService.Focus();
                     return;
                 }
-                if (chechCustomerId !=quotation.CustomerId)
+                if (chechCustomerId != quotation.CustomerId)
                 {
                     cboCustomerName.Focus();
                     return;
                 }
 
             }
-            Object[] row = {RowNumber, quotation.QuotationId,quotation.CustomerId,quotation.QuotationDate,quotation.ServiceId, quotation.Validity, quotation.ServiceName,quotation.Unit,quotation.Rate,quotation.Remark,quotation.Amount()};
+            Object[] row = { RowNumber, quotation.QuotationId, quotation.CustomerId, quotation.QuotationDate, quotation.ServiceId, quotation.Validity, quotation.ServiceName, quotation.Unit, quotation.Rate, quotation.Remark, quotation.Amount() };
             dgQuotation.Rows.Add(row);
             RowNumber++;
+        }
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            AddDataToDataGrid();
 
         }
 
@@ -141,7 +157,10 @@ namespace UNTQuotation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            quotation.CommitQuotationData(dgQuotation);
+            if (MessageBox.Show("Do you want to print quotation?","Print Quotation",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            { 
+                quotation.CommitQuotationData(dgQuotation);
+            }
         }
 
         private void dgQuotation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -160,6 +179,23 @@ namespace UNTQuotation
         private void cboService_Click(object sender, EventArgs e)
         {
             quotation.SetService(cboService);
+        }
+
+        private void removeServiceItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgQuotation.Rows.Count == 0)
+            {
+                return;
+            }
+            DataGridViewRow DGV=new DataGridViewRow();
+            DGV=dgQuotation.SelectedRows[0];
+            dgQuotation.Rows.Remove(DGV);
+        }
+
+        private void cboService_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            quotation=new Quotation();
+            quotation.GetServicePrice(cboService, txtRate);
         }
     }
 }

@@ -117,12 +117,37 @@ namespace UNTQuotation.Models
                 MessageBox.Show("Erorr:" + ex.Message);
             }
         }
+        public void GetServicePrice(ComboBox cboServiceName, [Optional] TextBox txtRate)
+        {
+            try
+            {
+                this.SQL = "select ServiceId,ServiceName,Price from tblService where ServiceName=@ServiceName";
+                Service serivce = new Service();
+                Database.cmd = new SqlCommand(this.SQL, Database.con);
+                serivce.ServiceName = cboServiceName.Text;
+                Database.cmd.Parameters.AddWithValue("@ServiceName", serivce.ServiceName);
+                Database.cmd.ExecuteNonQuery();
+                Database.da = new SqlDataAdapter(Database.cmd);
+                Database.tbl = new DataTable();
+                Database.da.Fill(Database.tbl);
+                if (Database.tbl.Rows.Count > 0)
+                {
+                    txtRate.Text = Database.tbl.Rows[0]["Price"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error get Get Service Price:" + ex.Message);
+            }
+        }
         public int GetServiceId(ComboBox cboServiceName)
         {
             int id = 0;
             try
             {
-                this.SQL = "select ServiceId,ServiceName from tblService where ServiceName=@ServiceName";
+                this.SQL = "select ServiceId,ServiceName,Price from tblService where ServiceName=@ServiceName";
                 Service serivce = new Service();
                 Database.cmd = new SqlCommand(this.SQL, Database.con);
                  serivce.ServiceName = cboServiceName.Text;
@@ -134,6 +159,7 @@ namespace UNTQuotation.Models
                 if (Database.tbl.Rows.Count > 0)
                 {
                     id = Convert.ToInt32(Database.tbl.Rows[0]["ServiceId"].ToString());
+                    
                 }
 
             }
@@ -314,40 +340,31 @@ namespace UNTQuotation.Models
                 Database.da = new SqlDataAdapter(Database.cmd);
                 Database.tbl = new DataTable();
                 Database.da.Fill(Database.tbl);
-                string pathFileReport = Application.StartupPath + @"\reports\quotation_report.xlsx";
+                string pathFileReport = Application.StartupPath + @"\reports\unt_report1.xlsx";
                 Wb = Xa.Workbooks.Open(pathFileReport, false, false, true);
                 //get excel sheet
                 Ws = Wb.Worksheets["Sheet1"];
-                int row = 19;
+                int row = 17;
                 int i = 1;
-                Ws.Cells[6, 6] = Database.tbl.Rows[0]["QuotationId"];
-                Ws.Cells[6, 8] = Database.tbl.Rows[0]["QuotationDate"];
-                Ws.Cells[8, 6] = Database.tbl.Rows[0]["CustomerId"];
+                Ws.Cells[10, 2] = Database.tbl.Rows[0]["CustomerName"];
+                Ws.Cells[11, 2] = Database.tbl.Rows[0]["ContactNumber"];
+                Ws.Cells[12, 2] = Database.tbl.Rows[0]["Address"];
+
+                Ws.Cells[10, 12] = Database.tbl.Rows[0]["QuotationDate"];
+                Ws.Cells[11, 12] = Database.tbl.Rows[0]["Validity"];
+                Ws.Cells[12, 12] = Database.tbl.Rows[0]["QuotationId"];
+                Ws.Cells[13, 12] = Database.tbl.Rows[0]["CustomerId"];
+
                 foreach (DataRow r in Database.tbl.Rows)
                 {
                     Ws.Cells[row, 1] = i;
                     Ws.Cells[row, 2] = r["ServiceName"].ToString();
-                    Ws.Cells[row, 6] = r["Unit"].ToString();
+                    Ws.Cells[row, 11] = r["Unit"].ToString();
                     Ws.Cells[row, 7] = r["Rate"].ToString();
-                    Ws.Cells[row, 8] = r["Amount"].ToString();
+                    Ws.Cells[row, 12] = r["Amount"].ToString();
                     i++;
                     row++;
                 }
-
-                //set hide row excel
-                //for (int j = 11; j <= 35; j++)
-                //{
-                //    string check = Convert.ToString(Ws.Cells[j, 2].Text);
-                //    if (check.Equals(""))
-                //    {
-                //        Ws.Rows[j].Hidden = true;
-                //    }
-
-
-                //}
-                //autofit column in worksheet
-                Ws.Columns.AutoFit();
-                //show excel application
                 Xa.Visible = true;
                 //print preivew excel sheet
                 // Ws.PrintPreview();

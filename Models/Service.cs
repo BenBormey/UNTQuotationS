@@ -15,6 +15,9 @@ namespace UNTQuotation.Models
     {
         public int Id { get; set; }
         public string ServiceName { get; set; }
+        public double Price { get; set; }
+        public double Currency { get; set; }
+        public int IsActive { get; set; }
         public string SQL { get; set; }
         public static int RowEffected {  get; set; }
         public DataGridViewRow dgv;
@@ -23,9 +26,12 @@ namespace UNTQuotation.Models
         {
             try
             {
-                this.SQL = "INSERT INTO tblService(ServiceName,CreateBy,CreateAt)Values(@ServiceName,@CreateBy,GETDATE())";
+                this.SQL = "INSERT INTO tblService(ServiceName,Price,Currency,IsActive,CreateBy,CreateAt)Values(@ServiceName,@Price,@Currency,@IsActive,@CreateBy,GETDATE())";
                 Database.cmd = new SqlCommand(this.SQL,Database.con);
                 Database.cmd.Parameters.AddWithValue("@ServiceName", this.ServiceName);
+                Database.cmd.Parameters.AddWithValue("@Price", this.Price);
+                Database.cmd.Parameters.AddWithValue("@Currency", this.Currency);
+                Database.cmd.Parameters.AddWithValue("@IsActive", this.IsActive);
                 Database.cmd.Parameters.AddWithValue("@CreateBy",User.CreateBy);
                 RowEffected = Database.cmd.ExecuteNonQuery();
                 if(RowEffected> 0)
@@ -78,7 +84,7 @@ namespace UNTQuotation.Models
                 dg.Rows.Clear();
                 foreach (DataRow r in Database.tbl.Rows)
                 {
-                    object[] row = { r["ServiceId"], r["ServiceName"]};
+                    object[] row = { r["ServiceId"], r["ServiceName"], r["KhServiceName"], r["Price"], r["Currency"], r["IsActive"] };
                     dg.Rows.Add(row);
                 }
             }
@@ -87,14 +93,25 @@ namespace UNTQuotation.Models
                 MessageBox.Show("Error loading data service:" + ex.Message);
             }
         }
-        public  void TranferData(DataGridView dg, TextBox txtServiceName)
+        public  void TranferData(DataGridView dg, TextBox txtEnServiceName, TextBox txtKhServiceName, TextBox txtPrice,TextBox txtCurrency,CheckBox chkIsActive)
         {
             try
             {
                 if (dg.Rows.Count > 0)
                 {
                     this.dgv = dg.SelectedRows[0];
-                    txtServiceName.Text = dgv.Cells[1].Value.ToString();
+                    txtEnServiceName.Text = dgv.Cells[1].Value.ToString();
+                    txtKhServiceName.Text = dgv.Cells[2].Value.ToString();
+                    txtPrice.Text = dgv.Cells[3].Value.ToString();
+                    txtCurrency.Text = dgv.Cells[3].Value.ToString();
+                    if (dgv.Cells[4].Value.ToString().Equals("True"))
+                    {
+                        chkIsActive.Checked = true;
+                    }
+                    else
+                    {
+                        chkIsActive.Checked = false;
+                    }
                 }
             }
             catch (Exception ex) {
@@ -145,7 +162,7 @@ namespace UNTQuotation.Models
                 dg.Rows.Clear();
                 foreach (DataRow r in Database.tbl.Rows)
                 {
-                    object[] row = { r["ServiceId"], r["ServiceName"] };
+                    object[] row = { r["ServiceId"], r["ServiceName"], r["KhServiceName"], r["Price"], r["Currency"], r["IsActive"] };
                     dg.Rows.Add(row);
                 }
             }
