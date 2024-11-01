@@ -8,22 +8,33 @@ using UNT_quotation.Data;
 using System.Data.SqlClient;
 using System.Data;
 using UNT_Quotation.Models;
+using System.Runtime.InteropServices;
 
 namespace UNTQuotation.Models
 {
     internal class Customer : Action
     {
         public int Id { get; set; }
-        public string Address { get; set; }
-        public string AttenTion { get; set; }
         public string EnglishName { get; set; }
         public string KhmerName { get; set; }
+        public string Address { get; set; }
+        public string AttenTion { get; set; }
         public string ContactNo { get; set; }
         public string Email { get; set; }
         public string SQL { get; set; }
         public static int RowEffected {  get; set; }
         public DataGridViewRow dgv;
-        
+        public Customer([Optional]int id, string englishName, string khmerName, string address, string attenTion, string contactNo, string email)
+        {
+            Id = id;
+            EnglishName = englishName;
+            KhmerName = khmerName;
+            Address = address;
+            AttenTion = attenTion;
+            ContactNo = contactNo;
+            Email = email;
+        }
+        public Customer() { }
         public override void Create(DataGridView dg)
         {
             try

@@ -78,6 +78,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgQuotation)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -103,7 +104,7 @@
             this.cboCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCustomerName.FormattingEnabled = true;
             this.cboCustomerName.Location = new System.Drawing.Point(312, 210);
-            this.cboCustomerName.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cboCustomerName.Margin = new System.Windows.Forms.Padding(6);
             this.cboCustomerName.Name = "cboCustomerName";
             this.cboCustomerName.Size = new System.Drawing.Size(636, 45);
             this.cboCustomerName.TabIndex = 0;
@@ -136,7 +137,7 @@
             this.txtAttention.Enabled = false;
             this.txtAttention.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAttention.Location = new System.Drawing.Point(272, 365);
-            this.txtAttention.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtAttention.Margin = new System.Windows.Forms.Padding(6);
             this.txtAttention.Multiline = true;
             this.txtAttention.Name = "txtAttention";
             this.txtAttention.Size = new System.Drawing.Size(636, 119);
@@ -161,7 +162,7 @@
             this.cboService.FormattingEnabled = true;
             this.cboService.IntegralHeight = false;
             this.cboService.Location = new System.Drawing.Point(312, 606);
-            this.cboService.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cboService.Margin = new System.Windows.Forms.Padding(6);
             this.cboService.Name = "cboService";
             this.cboService.Size = new System.Drawing.Size(634, 45);
             this.cboService.TabIndex = 1;
@@ -183,7 +184,7 @@
             // 
             this.txtUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUnit.Location = new System.Drawing.Point(1276, 248);
-            this.txtUnit.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtUnit.Margin = new System.Windows.Forms.Padding(6);
             this.txtUnit.Multiline = true;
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.Size = new System.Drawing.Size(652, 50);
@@ -204,7 +205,7 @@
             // 
             this.txtRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRate.Location = new System.Drawing.Point(1276, 313);
-            this.txtRate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtRate.Margin = new System.Windows.Forms.Padding(6);
             this.txtRate.Multiline = true;
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(652, 50);
@@ -225,7 +226,7 @@
             // 
             this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Location = new System.Drawing.Point(1276, 37);
-            this.dtpDate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(6);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(652, 44);
             this.dtpDate.TabIndex = 3;
@@ -256,7 +257,7 @@
             // 
             this.txtRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRemark.Location = new System.Drawing.Point(1316, 488);
-            this.txtRemark.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtRemark.Margin = new System.Windows.Forms.Padding(6);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(652, 167);
@@ -272,7 +273,7 @@
             this.btnExportToExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportToExcel.Image")));
             this.btnExportToExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportToExcel.Location = new System.Drawing.Point(1002, 1227);
-            this.btnExportToExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportToExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportToExcel.Name = "btnExportToExcel";
             this.btnExportToExcel.Size = new System.Drawing.Size(376, 69);
             this.btnExportToExcel.TabIndex = 66;
@@ -290,7 +291,7 @@
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClose.Location = new System.Drawing.Point(1410, 1227);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(264, 69);
             this.btnClose.TabIndex = 67;
@@ -308,7 +309,7 @@
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUpdate.Location = new System.Drawing.Point(358, 1227);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(286, 69);
             this.btnUpdate.TabIndex = 69;
@@ -325,7 +326,7 @@
             this.btnPrintReport.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintReport.Image")));
             this.btnPrintReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrintReport.Location = new System.Drawing.Point(684, 1227);
-            this.btnPrintReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrintReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintReport.Name = "btnPrintReport";
             this.btnPrintReport.Size = new System.Drawing.Size(286, 69);
             this.btnPrintReport.TabIndex = 70;
@@ -338,9 +339,9 @@
             this.groupBox1.Controls.Add(this.dgQuotation);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(40, 777);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
             this.groupBox1.Size = new System.Drawing.Size(2014, 437);
             this.groupBox1.TabIndex = 88;
             this.groupBox1.TabStop = false;
@@ -363,10 +364,10 @@
             this.Column6,
             this.Column7});
             this.dgQuotation.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgQuotation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgQuotation.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgQuotation.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgQuotation.Location = new System.Drawing.Point(6, 43);
-            this.dgQuotation.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dgQuotation.Margin = new System.Windows.Forms.Padding(6);
             this.dgQuotation.MultiSelect = false;
             this.dgQuotation.Name = "dgQuotation";
             this.dgQuotation.ReadOnly = true;
@@ -400,7 +401,7 @@
             this.Column2.MinimumWidth = 10;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 130;
+            this.Column2.Width = 150;
             // 
             // Column10
             // 
@@ -506,9 +507,10 @@
             // 
             // txtQuotationId
             // 
+            this.txtQuotationId.Enabled = false;
             this.txtQuotationId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuotationId.Location = new System.Drawing.Point(1276, 179);
-            this.txtQuotationId.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtQuotationId.Margin = new System.Windows.Forms.Padding(6);
             this.txtQuotationId.Multiline = true;
             this.txtQuotationId.Name = "txtQuotationId";
             this.txtQuotationId.Size = new System.Drawing.Size(652, 50);
@@ -524,7 +526,7 @@
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(40, 1227);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(286, 69);
             this.btnSave.TabIndex = 68;
@@ -539,11 +541,12 @@
             this.cbovalitity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbovalitity.FormattingEnabled = true;
             this.cbovalitity.Location = new System.Drawing.Point(1316, 210);
-            this.cbovalitity.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cbovalitity.Margin = new System.Windows.Forms.Padding(6);
             this.cbovalitity.Name = "cbovalitity";
-            this.cbovalitity.Size = new System.Drawing.Size(652, 45);
+            this.cbovalitity.Size = new System.Drawing.Size(513, 45);
             this.cbovalitity.TabIndex = 8;
             this.cbovalitity.Text = "   ";
+            this.cbovalitity.SelectedIndexChanged += new System.EventHandler(this.cbovalitity_SelectedIndexChanged);
             // 
             // printDocument1
             // 
@@ -557,8 +560,8 @@
             this.btnAddService.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddService.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.btnAddService.Image = global::UNT_Quotation.Properties.Resources.folder_plus_circle__1_;
-            this.btnAddService.Location = new System.Drawing.Point(962, 606);
-            this.btnAddService.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddService.Location = new System.Drawing.Point(962, 603);
+            this.btnAddService.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddService.Name = "btnAddService";
             this.btnAddService.Size = new System.Drawing.Size(72, 56);
             this.btnAddService.TabIndex = 2;
@@ -572,8 +575,8 @@
             this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddCustomer.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.btnAddCustomer.Image = global::UNT_Quotation.Properties.Resources.folder_plus_circle__1_;
-            this.btnAddCustomer.Location = new System.Drawing.Point(962, 210);
-            this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddCustomer.Location = new System.Drawing.Point(962, 206);
+            this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(72, 54);
             this.btnAddCustomer.TabIndex = 2;
@@ -585,7 +588,7 @@
             this.txtAddress.Enabled = false;
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.Location = new System.Drawing.Point(312, 348);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(6);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(636, 96);
@@ -601,7 +604,7 @@
             this.btnAddItem.Image = ((System.Drawing.Image)(resources.GetObject("btnAddItem.Image")));
             this.btnAddItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddItem.Location = new System.Drawing.Point(1316, 687);
-            this.btnAddItem.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.btnAddItem.Margin = new System.Windows.Forms.Padding(10);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(294, 69);
             this.btnAddItem.TabIndex = 89;
@@ -611,6 +614,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.txtCustomerName);
             this.groupBox2.Controls.Add(this.txtAttention);
@@ -625,9 +629,9 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Location = new System.Drawing.Point(40, 100);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(6);
             this.groupBox2.Size = new System.Drawing.Size(2014, 675);
             this.groupBox2.TabIndex = 90;
             this.groupBox2.TabStop = false;
@@ -648,11 +652,22 @@
             this.txtCustomerName.Enabled = false;
             this.txtCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCustomerName.Location = new System.Drawing.Point(272, 183);
-            this.txtCustomerName.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtCustomerName.Margin = new System.Windows.Forms.Padding(6);
             this.txtCustomerName.Multiline = true;
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.Size = new System.Drawing.Size(636, 50);
             this.txtCustomerName.TabIndex = 63;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(1798, 106);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(130, 51);
+            this.btnAdd.TabIndex = 65;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // QuotationForm
             // 
@@ -680,7 +695,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "QuotationForm";
             this.Text = "Quotation Information";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -726,6 +741,13 @@
         private System.Windows.Forms.Button btnAddItem;
         private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.ComboBox cboCustomerName;
+        protected internal System.Windows.Forms.TextBox txtUnit;
+        public System.Windows.Forms.TextBox txtAttention;
+        public System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem removeServiceItemToolStripMenuItem;
+        private System.Windows.Forms.Label label11;
+        public System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -737,13 +759,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        protected internal System.Windows.Forms.TextBox txtUnit;
-        public System.Windows.Forms.TextBox txtAttention;
-        public System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem removeServiceItemToolStripMenuItem;
-        private System.Windows.Forms.Label label11;
-        public System.Windows.Forms.TextBox txtCustomerName;
+        private System.Windows.Forms.Button btnAdd;
     }
 }
 

@@ -23,6 +23,7 @@ namespace UNTQuotation
         public static string name;
         public QuotationForm()
         {
+
             InitializeComponent();
             Database.connetion();
             
@@ -32,14 +33,8 @@ namespace UNTQuotation
         {
             //quotation.SetCustomer(cboCustomerName);
             quotation.SetService(cboService);
-            //cbovalitity.Items.Add("45 Day");
-            //cbovalitity.Items.Add("75 Day");
-            //cbovalitity.Items.Add("100 Day");
-            cbovalitity.Items.Clear();
-            for (int i = 1; i <= 60; i++)
-            {
-                cbovalitity.Items.Add($"{i} Day");
-            }
+            quotation.SetDayToValidity(cbovalitity);
+
         }
         private void cboQuoted_KeyPress(object sender, KeyPressEventArgs e)
 
@@ -196,6 +191,18 @@ namespace UNTQuotation
         {
             quotation=new Quotation();
             quotation.GetServicePrice(cboService, txtRate);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            quotation.AddDay(cbovalitity);
+            quotation.SetDayToValidity(cbovalitity);
+
+        }
+
+        private void cbovalitity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

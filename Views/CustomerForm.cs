@@ -30,23 +30,13 @@ namespace UNT_Quotation.Views
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
+            
             if (Funtions.startBox(txtQuotedName, txtAddress, txtAttenTion, txtkhmerName, txtContactNo, txtEmail) == 0)
             {
                 return;
             }
-            customer = new Customer();
-            customer.Address = txtAddress.Text;
-            customer.AttenTion = txtAttenTion.Text;
-            customer.KhmerName = txtkhmerName.Text;
-            customer.ContactNo = txtContactNo.Text;
-            customer.Email = txtEmail.Text;
-            customer.EnglishName = txtQuotedName.Text;
-            int check =
-            Funtions.CheckDouplicatedItem("select ContactNumber from tblCustomers where ContactNumber=@ItemName", txtContactNo, "Contuct Us");
-            if (check == 1)
-            {
-                return;
-            }
+            customer = new Customer(1,txtQuotedName.Text, txtkhmerName.Text,txtAddress.Text, txtAttenTion.Text,txtContactNo.Text, txtEmail.Text);
+            
             int check1 = Funtions.CheckDouplicatedItem("select Email from tblCustomers where Email=@ItemName", txtEmail, "Email");
             if (check1 == 1)
             {
@@ -139,16 +129,20 @@ namespace UNT_Quotation.Views
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-            if(e.KeyChar == (char)13)
+            if (Funtions.startBox(txtSearchItem) == 0)
+            {
+                return;
+            }
+            if (e.KeyChar == (char)13)
             {
 
-                if (Funtions.startBox(txtSearchItem) == 0)
-                {
-                    return;
-                }
                 customer.SearchItem(dgCustomer,txtSearchItem);
             }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

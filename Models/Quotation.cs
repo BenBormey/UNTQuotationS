@@ -28,6 +28,7 @@ namespace UNTQuotation.Models
         public int ServiceId { get; set; }
         public string ServiceName { get; set; }
         public string sqlUpdate { get; set; }
+        public int RowEffected { get; set; }
         public DataGridViewRow dgv { get; set; }
         public double Amount()
         {
@@ -351,14 +352,14 @@ namespace UNTQuotation.Models
                 Ws.Cells[12, 2] = Database.tbl.Rows[0]["Address"];
 
                 Ws.Cells[10, 12] = Database.tbl.Rows[0]["QuotationDate"];
-                Ws.Cells[11, 12] = Database.tbl.Rows[0]["Validity"];
-                Ws.Cells[12, 12] = Database.tbl.Rows[0]["QuotationId"];
-                Ws.Cells[13, 12] = Database.tbl.Rows[0]["CustomerId"];
+                Ws.Cells[11, 12] = Database.tbl.Rows[0]["QuotationId"];
+                Ws.Cells[12, 12] = Database.tbl.Rows[0]["CustomerId"];
 
                 foreach (DataRow r in Database.tbl.Rows)
                 {
                     Ws.Cells[row, 1] = i;
                     Ws.Cells[row, 2] = r["ServiceName"].ToString();
+                    Ws.Cells[row, 10] = r["Validity"].ToString();
                     Ws.Cells[row, 11] = r["Unit"].ToString();
                     Ws.Cells[row, 7] = r["Rate"].ToString();
                     Ws.Cells[row, 12] = r["Amount"].ToString();
@@ -382,6 +383,46 @@ namespace UNTQuotation.Models
             catch (Exception e)
             {
                 MessageBox.Show($"Error print report to excel:{e.Message}");
+            }
+        }
+        public void AddDay(ComboBox cboValidity)
+        {
+            try
+            {
+                this.SQL = "INSERT INTO tblday(days)VALUES(@days)";
+                Database.cmd = new SqlCommand(this.SQL, Database.con);
+                Database.cmd.Parameters.AddWithValue("@days", cboValidity.Text.Trim());
+                this.RowEffected = Database.cmd.ExecuteNonQuery();
+                if (RowEffected > 0)
+                {
+                    MessageBox.Show("Create day successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error create day:" + ex.Message);
+            }
+        }
+        public  void SetDayToValidity(ComboBox cboValidity)
+        {
+            try
+            {
+                this.SQL = "select distinct(days) from tblday";
+                Database.cmd = new SqlCommand(this.SQL, Database.con);
+                Database.cmd.ExecuteNonQuery();
+                Database.da = new SqlDataAdapter(Database.cmd);
+                Database.tbl = new DataTable();
+                Database.da.Fill(Database.tbl);
+                cboValidity.Items.Clear();
+                foreach (DataRow r in Database.tbl.Rows)
+                {
+                    object[] row = { r["Days"]};
+                    cboValidity.Items.Add(r["Days"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:" + ex.Message);
             }
         }
 

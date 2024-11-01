@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UNT_quotation.Data;
 using System.Data.SqlClient;
+using System.ComponentModel;
 
 namespace UNT_Quotation.Funtion
 {
@@ -15,7 +16,7 @@ namespace UNT_Quotation.Funtion
         {
             foreach (TextBox box in textBoxes)
             {
-                if (box.Text.Equals("") || box.Text == "")
+                if (box.Text.Equals("") || box.Text==null)
                 {
                     box.Focus();
                     return 0;
@@ -58,5 +59,29 @@ namespace UNT_Quotation.Funtion
             }
             return 0;
         }
+        //public static int CheckDouplicatedItem(string sql,Object ItemName, string message)
+        //{
+        //    try
+        //    {
+        //        Sql = sql;
+        //        Database.cmd = new SqlCommand(Sql, Database.con);
+        //        Database.cmd.Parameters.AddWithValue("@ItemName", ItemName);
+        //        Database.cmd.ExecuteNonQuery();
+        //        Database.da = new SqlDataAdapter(Database.cmd);
+        //        Database.tbl = new System.Data.DataTable();
+        //        Database.da.Fill(Database.tbl);
+        //        if (Database.tbl.Rows.Count > 0)
+        //        {
+        //            MessageBox.Show($"{message} has been already!");
+        //            return 1;
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Error check douplicate item:{ex}");
+        //    }
+        //    return 0;
+        //}
     }
 }
