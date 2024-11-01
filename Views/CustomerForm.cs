@@ -83,6 +83,7 @@ namespace UNT_Quotation.Views
             customer.Email = txtEmail.Text;
             customer.EnglishName = txtQuotedName.Text;
             int check, check1;
+
             check=Funtions.CheckDouplicatedItem("select ContactNumber from tblCustomers where ContactNumber=@ItemName", txtContactNo, "Contuct Us");
             if (check == 1)
             {

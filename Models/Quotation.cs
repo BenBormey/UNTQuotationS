@@ -98,7 +98,7 @@ namespace UNTQuotation.Models
         {
             try
             {
-                this.SQL = "SELECT ServiceName FROM tblService";
+                this.SQL = "SELECT ServiceName FROM tblService where IsActive='True'";
                 Database.cmd = new SqlCommand(this.SQL, Database.con);
                 Database.cmd.ExecuteNonQuery();
                 Database.da = new SqlDataAdapter(Database.cmd);
@@ -124,8 +124,8 @@ namespace UNTQuotation.Models
                 this.SQL = "select ServiceId,ServiceName,Price from tblService where ServiceName=@ServiceName";
                 Service serivce = new Service();
                 Database.cmd = new SqlCommand(this.SQL, Database.con);
-                serivce.ServiceName = cboServiceName.Text;
-                Database.cmd.Parameters.AddWithValue("@ServiceName", serivce.ServiceName);
+                serivce.EnServiceName = cboServiceName.Text;
+                Database.cmd.Parameters.AddWithValue("@ServiceName", serivce.EnServiceName);
                 Database.cmd.ExecuteNonQuery();
                 Database.da = new SqlDataAdapter(Database.cmd);
                 Database.tbl = new DataTable();
@@ -150,8 +150,8 @@ namespace UNTQuotation.Models
                 this.SQL = "select ServiceId,ServiceName,Price from tblService where ServiceName=@ServiceName";
                 Service serivce = new Service();
                 Database.cmd = new SqlCommand(this.SQL, Database.con);
-                 serivce.ServiceName = cboServiceName.Text;
-                Database.cmd.Parameters.AddWithValue("@ServiceName", serivce.ServiceName);
+                 serivce.EnServiceName = cboServiceName.Text;
+                Database.cmd.Parameters.AddWithValue("@ServiceName", serivce.EnServiceName);
                 Database.cmd.ExecuteNonQuery();
                 Database.da = new SqlDataAdapter(Database.cmd);
                 Database.tbl = new DataTable();

@@ -34,12 +34,13 @@ namespace UNT_Quotation.Views
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (Funtions.startBox(txtServiceName,txtPrice,txtCurrency) == 0)
+            if (Funtions.startBox(txtServiceName,txtKhServiceName,txtPrice,txtCurrency) == 0)
             {
                 return;
             }
             service = new Service();
-            service.ServiceName = txtServiceName.Text.Trim();
+            service.EnServiceName = txtServiceName.Text.Trim();
+            service.KhServiceName = txtKhServiceName.Text.Trim();
             service.Price =Convert.ToDouble(txtPrice.Text.Trim());
             service.Currency = Convert.ToDouble(txtCurrency.Text.Trim());
             if (chkActive.Checked)
@@ -51,15 +52,18 @@ namespace UNT_Quotation.Views
                 service.IsActive = 0;
             }
             
-            int chech = Funtions.CheckDouplicatedItem("select ServiceName from tblService where ServiceName=@ItemName", txtServiceName, "Service Name");
-            if (chech == 1)
+            int check = Funtions.CheckDouplicatedItem("select ServiceName from tblService where ServiceName=@ItemName", txtServiceName, "Service English Name has been allready !");
+            if (check == 1)
+            {
+                return;
+            }
+            int check1 = Funtions.CheckDouplicatedItem("select KhServiceName from tblService where KhServiceName=@ItemName", txtServiceName, "Service Khmer Name has been allready !");
+            if (check1 == 1)
             {
                 return;
             }
             service.Create(dgService);
-            dgService.Rows.Clear();
-            service.LoadingData(dgService);
-            Funtions.ClearBox(txtServiceName);
+            Funtions.ClearBox(txtServiceName,txtKhServiceName,txtPrice,txtCurrency);
 
         }
 
@@ -76,19 +80,30 @@ namespace UNT_Quotation.Views
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (Funtions.startBox(txtServiceName) == 0)
+            if (Funtions.startBox(txtServiceName, txtKhServiceName, txtPrice, txtCurrency) == 0)
             {
                 return;
             }
             service = new Service();
-            service.ServiceName = txtServiceName.Text;
+            service.EnServiceName = txtServiceName.Text.Trim();
+            service.KhServiceName = txtKhServiceName.Text.Trim();
+            service.Price = Convert.ToDouble(txtPrice.Text.Trim());
+            service.Currency = Convert.ToDouble(txtCurrency.Text.Trim());
+            if (chkActive.Checked)
+            {
+                service.IsActive = 1;
+            }
+            else
+            {
+                service.IsActive = 0;
+            }
             int chech = Funtions.CheckDouplicatedItem("select ServiceName from tblService where ServiceName=@ItemName", txtServiceName, "Service Name");
             if (chech == 1)
             {
                 return;
             }
             service.UpdateById(dgService);
-            Funtions.ClearBox(txtServiceName);
+            Funtions.ClearBox(txtServiceName, txtKhServiceName, txtPrice, txtCurrency);
         }
 
         private void txtServiceName_Leave(object sender, EventArgs e)

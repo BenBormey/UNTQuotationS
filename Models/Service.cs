@@ -14,7 +14,8 @@ namespace UNTQuotation.Models
     internal class Service : Action
     {
         public int Id { get; set; }
-        public string ServiceName { get; set; }
+        public string EnServiceName { get; set; }
+        public string KhServiceName { get; set; }
         public double Price { get; set; }
         public double Currency { get; set; }
         public int IsActive { get; set; }
@@ -26,9 +27,10 @@ namespace UNTQuotation.Models
         {
             try
             {
-                this.SQL = "INSERT INTO tblService(ServiceName,Price,Currency,IsActive,CreateBy,CreateAt)Values(@ServiceName,@Price,@Currency,@IsActive,@CreateBy,GETDATE())";
+                this.SQL = "INSERT INTO tblService(ServiceName,KhServiceName,Price,Currency,IsActive,CreateBy,CreateAt)Values(@ServiceName,@KhServiceName,@Price,@Currency,@IsActive,@CreateBy,GETDATE())";
                 Database.cmd = new SqlCommand(this.SQL,Database.con);
-                Database.cmd.Parameters.AddWithValue("@ServiceName", this.ServiceName);
+                Database.cmd.Parameters.AddWithValue("@ServiceName", this.EnServiceName);
+                Database.cmd.Parameters.AddWithValue("@KhServiceName", this.KhServiceName);
                 Database.cmd.Parameters.AddWithValue("@Price", this.Price);
                 Database.cmd.Parameters.AddWithValue("@Currency", this.Currency);
                 Database.cmd.Parameters.AddWithValue("@IsActive", this.IsActive);
@@ -36,7 +38,8 @@ namespace UNTQuotation.Models
                 RowEffected = Database.cmd.ExecuteNonQuery();
                 if(RowEffected> 0)
                 {
-                    MessageBox.Show("Create service successfully!");    
+                    MessageBox.Show("Create service successfully!");
+                    LoadingData(dg);
                 }
             }
             catch (Exception ex) {
@@ -53,17 +56,26 @@ namespace UNTQuotation.Models
                 this.SQL = "" +
                     "UPDATE tblservice " +
                         "SET    ServiceName=@ServiceName," +
-                                "UpdateBy =@UpdateBy,"+
+                                "KhServiceName = @KhServiceName," +
+                                "Price = @Price," +
+                                "Currency = @Currency," +
+                                "IsActive = @IsActive," +
+                                "UpdateBy =@UpdateBy," +
                                 "UpdateAt=GETDATE() " +
                         "WHERE ServiceId=@Id";
                 Database.cmd = new SqlCommand(this.SQL, Database.con);       
-                Database.cmd.Parameters.AddWithValue("@ServiceName", this.ServiceName);
+                Database.cmd.Parameters.AddWithValue("@ServiceName", this.EnServiceName);
+                Database.cmd.Parameters.AddWithValue("@KhServiceName", this.KhServiceName);
+                Database.cmd.Parameters.AddWithValue("@Price", this.Price);
+                Database.cmd.Parameters.AddWithValue("@Currency", this.Currency);
+                Database.cmd.Parameters.AddWithValue("@IsActive", this.IsActive);
                 Database.cmd.Parameters.AddWithValue("@UpdateBy", User.UpdateBy);
                 Database.cmd.Parameters.AddWithValue("@Id", this.Id);
                 RowEffected = Database.cmd.ExecuteNonQuery();
                 if (RowEffected > 0)
                 {
                     MessageBox.Show("Update service successfully!");
+                    LoadingData(dg);
                 }
             }
             catch(Exception ex)
@@ -103,8 +115,8 @@ namespace UNTQuotation.Models
                     txtEnServiceName.Text = dgv.Cells[1].Value.ToString();
                     txtKhServiceName.Text = dgv.Cells[2].Value.ToString();
                     txtPrice.Text = dgv.Cells[3].Value.ToString();
-                    txtCurrency.Text = dgv.Cells[3].Value.ToString();
-                    if (dgv.Cells[4].Value.ToString().Equals("True"))
+                    txtCurrency.Text = dgv.Cells[4].Value.ToString();
+                    if (dgv.Cells[5].Value.ToString().Equals("True"))
                     {
                         chkIsActive.Checked = true;
                     }
